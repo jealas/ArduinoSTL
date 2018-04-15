@@ -28,4 +28,10 @@ _UCXXEXPORT void operator delete(void* ptr) noexcept(true){
 	free(ptr);
 }
 
+#include <del_opnt.cpp>
+#include <del_ops.cpp>
+#include <del_opv.cpp>
+#include <del_opvnt.cpp>
+#include <del_opvs.cpp>
+
 #endif

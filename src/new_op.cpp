@@ -37,4 +37,8 @@ _UCXXEXPORT void* operator new(std::size_t numBytes) noexcept(false){
 	return p;
 }
 
+#include <new_opnt.cpp>
+#include <new_opv.cpp>
+#include <new_opvnt.cpp>
+
 #endif
