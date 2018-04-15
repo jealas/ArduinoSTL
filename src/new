@@ -33,36 +33,36 @@ namespace std{
 	extern const nothrow_t nothrow;
 
 	typedef void (*new_handler)();
-	_UCXXEXPORT new_handler set_new_handler(new_handler new_p) throw();
+	_UCXXEXPORT new_handler set_new_handler(new_handler new_p) noexcept(true);
 }
 
 
-_UCXXEXPORT void* operator new(std::size_t numBytes) throw(std::bad_alloc);
-_UCXXEXPORT void operator delete(void* ptr) throw();
+_UCXXEXPORT void* operator new(std::size_t numBytes) noexcept(false);
+_UCXXEXPORT void operator delete(void* ptr) noexcept(true);
 #if __cpp_sized_deallocation
-_UCXXEXPORT void operator delete(void* ptr, std::size_t) throw();
+_UCXXEXPORT void operator delete(void* ptr, std::size_t) noexcept(true);
 #endif
 
-_UCXXEXPORT void* operator new[](std::size_t numBytes) throw(std::bad_alloc);
-_UCXXEXPORT void operator delete[](void * ptr) throw();
+_UCXXEXPORT void* operator new[](std::size_t numBytes) noexcept(false);
+_UCXXEXPORT void operator delete[](void * ptr) noexcept(true);
 #if __cpp_sized_deallocation
-_UCXXEXPORT void operator delete[](void * ptr, std::size_t) throw();
+_UCXXEXPORT void operator delete[](void * ptr, std::size_t) noexcept(true);
 #endif
 
 #ifndef NO_NOTHROW
-_UCXXEXPORT void* operator new(std::size_t numBytes, const std::nothrow_t& ) throw();
-_UCXXEXPORT void operator delete(void* ptr, const std::nothrow_t& ) throw();
+_UCXXEXPORT void* operator new(std::size_t numBytes, const std::nothrow_t& ) noexcept(true);
+_UCXXEXPORT void operator delete(void* ptr, const std::nothrow_t& ) noexcept(true);
 
-_UCXXEXPORT void* operator new[](std::size_t numBytes, const std::nothrow_t& ) throw();
-_UCXXEXPORT void operator delete[](void* ptr, const std::nothrow_t& ) throw();
+_UCXXEXPORT void* operator new[](std::size_t numBytes, const std::nothrow_t& ) noexcept(true);
+_UCXXEXPORT void operator delete[](void* ptr, const std::nothrow_t& ) noexcept(true);
 #endif
 
 	/* Placement operators */
-inline void* operator new(std::size_t, void* ptr) throw() {return ptr; }
-inline void operator delete(void* , void *) throw() { }
+inline void* operator new(std::size_t, void* ptr) noexcept(true) {return ptr; }
+inline void operator delete(void* , void *) noexcept(true) { }
 	
-inline void* operator new[](std::size_t, void *p) throw() { return p; }
-inline void operator delete[](void* , void *) throw() {}
+inline void* operator new[](std::size_t, void *p) noexcept(true) { return p; }
+inline void operator delete[](void* , void *) noexcept(true) {}
 
 #pragma GCC visibility pop
 
